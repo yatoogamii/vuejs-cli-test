@@ -1,17 +1,28 @@
 <template>
   <div v-if="newGame" class="container-character">
+    <User :hp-player="hp.player"></User>
+    <Monster :hp-monster="hp.monster"></Monster>
   </div>
 </template>
 
 <script>
-  import _ from 'lodash'
+  import _ from 'lodash'; 
+  import User from './User.vue'; 
+  import Monster from './Monster.vue';
 
   export default{
     name: 'Character',
-    props: ['newGame', 'toggleGame', 'imgSrc', 'imgAlt'],
+    component: {
+      User,
+      Monster
+    },
+    props: ['newGame', 'toggleGame'],
     data() {
       return {
-        hp: 100
+        hp: {
+          player: 100,
+          monster: 100
+        }
       };
     },
     methods: {
@@ -41,7 +52,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .container-character {
   display: flex;
