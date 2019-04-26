@@ -1,13 +1,5 @@
 <template>
   <div v-if="newGame" class="container-character">
-    <div class="">
-      <p class="">{{hp}}</p>
-    </div>
-    <img :src="imgSrc" v-bind:alt="imgAlt">
-    <button @click="attack(3, 10)">Attack</button>
-    <button @click="attack(10, 20)">Special</button>
-    <button @click="heal()">Heal</button>
-    <button @click="toggleGame()">Reset</button>
   </div>
 </template>
 
@@ -16,11 +8,9 @@
 
   export default{
     name: 'Character',
-    props: ['newGame', 'toggleGame'],
+    props: ['newGame', 'toggleGame', 'imgSrc', 'imgAlt'],
     data() {
       return {
-        imgSrc: require("./../assets/img/monster.gif"),
-        imgAlt: "monster",
         hp: 100
       };
     },
@@ -40,7 +30,7 @@
       checkHp: function() {
         this.hp > 100 ? this.hp = 100 : this.hp;
         if(this.hp < 0) {
-          this.hp = '';
+          this.hp = 0;
           this.winner()
         }
       },
@@ -53,5 +43,12 @@
 
 <style scoped>
 
+.container-character {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 </style>
 
