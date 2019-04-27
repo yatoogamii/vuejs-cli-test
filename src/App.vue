@@ -29,8 +29,13 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'Retro-gaming';
+  src: url('./assets/font/Retro Gaming.ttf') format('truetype');
+}
 #app {
   display: flex;
   justify-content: space-evenly;
+  font-family: 'Retro-gaming';
 }
 </style>
