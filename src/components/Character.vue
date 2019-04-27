@@ -1,20 +1,22 @@
 <template>
   <div v-if="newGame" class="container-character">
-    <User :hp-player="hp.player"></User>
-    <Monster :hp-monster="hp.monster"></Monster>
+    <Monster></Monster>
+    <User></User>
   </div>
 </template>
 
 <script>
-  import _ from 'lodash'; 
-  import User from './User.vue'; 
-  import Monster from './Monster.vue';
 
-  export default{
+  import _ from 'lodash'; 
+  import Monster from './Monster.vue';
+  import User from './User.vue';
+
+
+  export default {
     name: 'Character',
-    component: {
-      User,
-      Monster
+    components: {
+      Monster,
+      User
     },
     props: ['newGame', 'toggleGame'],
     data() {
@@ -46,7 +48,6 @@
         }
       },
       winner: function() {
-          console.log("winner");
       }
     }
   }

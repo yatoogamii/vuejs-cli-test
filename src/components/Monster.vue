@@ -7,10 +7,7 @@
 
 <script>
   export default{
-    name: 'monster',
-    component: {
-
-    },
+    name: 'Monster',
     props: ['hp-monster']
   }
 </script>

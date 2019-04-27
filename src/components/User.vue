@@ -7,10 +7,7 @@
 
 <script>
   export default{
-    name: 'user',
-    component: {
-
-    },
+    name: 'User',
     props: ['hp-player']
   }
 </script>
