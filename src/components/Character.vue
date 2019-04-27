@@ -1,7 +1,7 @@
 <template>
   <div v-if="newGame" class="container-character">
-    <Monster></Monster>
-    <User></User>
+    <User :hp-player="hp.player"></User>
+    <Monster :hp-monster="hp.monster"></Monster>
   </div>
 </template>
 
@@ -48,6 +48,7 @@
         }
       },
       winner: function() {
+        console.log("oui");
       }
     }
   }
@@ -57,7 +58,6 @@
 
 .container-character {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
