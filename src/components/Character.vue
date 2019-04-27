@@ -1,7 +1,7 @@
 <template>
   <div v-if="newGame" class="container-character">
-    <User :hp-player="hp.player"></User>
-    <Monster :hp-monster="hp.monster"></Monster>
+    <User :hp-player="hpPlayer"></User>
+    <Monster :hp-monster="hpMonster"></Monster>
   </div>
 </template>
 
@@ -18,38 +18,8 @@
       Monster,
       User
     },
-    props: ['newGame', 'toggleGame'],
-    data() {
-      return {
-        hp: {
-          player: 100,
-          monster: 100
-        }
-      };
-    },
+    props: ['newGame', 'toggleGame', 'hpMonster', 'hpPlayer'],
     methods: {
-      attack: function(min, max) {
-        if(this.hp <= 100) {
-          this.hp += - _.random(min, max, false);
-          this.checkHp();
-        }
-      },
-      heal: function() {
-        if(this.hp <= 100) {
-          this.hp += 10;
-          this.checkHp();
-        }
-      },
-      checkHp: function() {
-        this.hp > 100 ? this.hp = 100 : this.hp;
-        if(this.hp < 0) {
-          this.hp = 0;
-          this.winner()
-        }
-      },
-      winner: function() {
-        console.log("oui");
-      }
     }
   }
 </script>
@@ -61,6 +31,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 </style>
 
