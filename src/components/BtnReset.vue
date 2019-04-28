@@ -1,10 +1,11 @@
 <template>
-  <v-btn :large="true"  color="brown" @click="$emit('reset')">Give Up</v-btn>
+  <v-btn :dark="dark"  :large="true"  color="brown" @click="$emit('reset')">Give Up</v-btn>
 </template>
 
 <script>
   export default{
-   name: 'BtnReset'
+   name: 'BtnReset',
+   props: ['dark']
   }
 </script>
 
