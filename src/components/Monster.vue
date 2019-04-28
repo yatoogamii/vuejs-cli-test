@@ -1,7 +1,7 @@
 <template>
   <div v-if="winner == 'monster' || winner == ''" class="monster-container">
-    <div class="monster-container__life-bar">
-      <h2>{{hpMonster}}</h2>
+    <div class="monster-container__life-bar" :style="{width: hpMonster + '%'}">
+      <h2 class="monster-container__hp">{{hpMonster}}</h2>
     </div>
     <img src="./../assets/img/monster.gif" alt="monster character"/>
   </div>
@@ -22,9 +22,15 @@
   flex-direction: column;
 
   .monster-container__life-bar {
+    position: relative;
     background-color: green;
-    text-align: center;
-    width: 100%;
+    margin-right: auto;
+    height: 3rem;
+    .monster-container__hp {
+      position: absolute;
+      left: 14.4rem;
+      top: 0.7rem;
+    }
   }
 }
 
