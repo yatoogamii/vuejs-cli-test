@@ -1,9 +1,9 @@
 <template>
   <section class="container-button">
     <BtnAttack v-on:attack="$emit('attack')" class="container-button__btn-attack"></BtnAttack>
-    <BtnSpeAttack v-on:spe-attack="$emit('spe-attack')"class="container-button__btn-spe-attack"></BtnSpeAttack>
+    <BtnSpeAttack v-on:spe-attack="$emit('spe-attack')" class="container-button__btn-spe-attack"></BtnSpeAttack>
     <BtnHeal v-on:heal="$emit('heal')" class="container-button__btn-heal"></BtnHeal>
-    <BtnReset class="container-button__btn-reset"></BtnReset>
+    <BtnReset v-on:reset="$emit('reset')" class="container-button__btn-reset"></BtnReset>
   </section>
 </template>
 

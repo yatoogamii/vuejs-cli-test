@@ -7,7 +7,6 @@
 
 <script>
 
-  import _ from 'lodash'; 
   import Monster from './Monster.vue';
   import User from './User.vue';
 
@@ -18,7 +17,7 @@
       Monster,
       User
     },
-    props: ['newGame', 'toggleGame', 'hpMonster', 'hpPlayer'],
+    props: ['newGame', 'hpMonster', 'hpPlayer'],
     methods: {
     }
   }
