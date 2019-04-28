@@ -2,7 +2,7 @@
   <main id="app">
     <Character :winner="winner.name" v-if="newGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
     </Character>
-    <Skills v-if="newGame"v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
+    <Skills v-if="newGame" v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
     <button v-if="!newGame" @click="toggleGame()" class="app__btn-new-game">New game</button>
   </main>
 </template>
@@ -37,15 +37,11 @@ export default {
   methods: {
     toggleGame() {
       this.newGame ? this.newGame = false : this.newGame = true;
-      for (let value in this.hp) {
-        this.hp[value] = 100;
-        this.winner.name = '';
-        this.winner.state = false;
-      }
+      this.reset();
     },
     attack(min, max) {
       this.hp.monster -= _.random(min, max);
-      this.hp.player -= _.random(6, 12);
+      this.hp.player -= _.random(5, 12);
       this.checkHp();
     },
     heal() {
@@ -54,6 +50,7 @@ export default {
       } else {
         this.hp.player += 10;
       }
+      this.hp.player -= _.random(5, 12);
     },
     checkHp() {
       if (this.hp.player <= 0) {
@@ -68,6 +65,16 @@ export default {
     checkWinner(character) {
       this.winner.name = character;
       this.winner.state = true;
+      if (confirm (`${(character == 'player') ? 'You win' : 'You lose'}, play again ?`) ) {
+        this.reset();
+      }
+    },
+    reset() {
+      for (let value in this.hp) {
+        this.hp[value] = 100;
+        this.winner.name = '';
+        this.winner.state = false;
+      }
     }
   }
 }
