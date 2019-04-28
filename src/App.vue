@@ -8,13 +8,9 @@
 </template>
 
 <script>
-
 import _ from 'lodash';
 import Character from './components/Character.vue';
 import Skills from './components/Skills.vue';
-
-
-
 export default {
   name: 'app',
   components: {
@@ -86,11 +82,9 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-
 html {
   font-size: 62.5%;
 }
-
 body {
   width: 100vw;
   height: 100vh;
@@ -98,7 +92,6 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-
 @font-face {
   font-family: 'Retro-gaming';
   src: url('./assets/font/Retro Gaming.ttf') format('truetype');
@@ -111,7 +104,6 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Retro-gaming';
-
   .app__btn-new-game {
     width: 10rem;
   }
