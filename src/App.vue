@@ -1,18 +1,19 @@
 <template>
-  <main id="app">
-    <Character :winner="winner.name" v-if="newGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
+  <main id="app" :style="darkStyle">
+    <v-btn :dark="!dark" v-if="newGame" class="app__btn-dark" @click="darkmode()">{{nextMode}}</v-btn>
+    <Character :style="colorTextdarkMode" :winner="winner.name" v-if="newGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
     </Character>
-    <Skills :disabled="disabled" v-if="newGame" v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
-    <v-btn :large="true" color="blue" v-if="!newGame" @click="toggleGame()" class="app__btn-new-game">New game</v-btn>
-    <v-dialog v-model="dialog" width="300">
-      <v-card hover>
+    <Skills :dark="dark" :disabled="disabled" v-if="newGame" v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
+    <v-btn :dark="dark" :large="true" color="blue" v-if="!newGame" @click="toggleGame()" class="app__btn-new-game">New game</v-btn>
+    <v-dialog :dark="dark"  v-model="dialog" width="300">
+      <v-card :dark="dark"  hover>
         <v-card-title primary-title>
           <p class="headline font-weight-bold">{{ winner.name + " win" }}</p>
         </v-card-title>
         <v-card-text >Play again ?</v-card-text>
         <v-card-actions>
           <v-btn color="green" @click="reset()">Yes</v-btn>
-          <v-btn color="red" @click="toggleGame()">No</v-btn>
+          <v-btn color="red" @click="dialog=false">No</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -41,7 +42,11 @@ export default {
         state: false
       },
       disabled: false,
-      dialog: false
+      dialog: false,
+      dark: false, 
+      darkStyle: '',
+      colorTextdarkMode: '',
+      nextMode: 'Dark'
     };
   },
   methods: {
@@ -86,6 +91,15 @@ export default {
         this.disabled = false;
         this.dialog = false;
       }
+    },
+    closeDiag() {
+      this.disabled = true;
+    },
+    darkmode() {
+      this.dark = !this.dark;
+      (this.darkStyle == 'background-color: #1d1d1d') ? this.darkStyle = '' : this.darkStyle = 'background-color: #1d1d1d' ;
+      (this.colorTextdarkMode == 'color: white') ? this.colorTextdarkMode = '' : this.colorTextdarkMode = 'color: white';
+      (this.nextMode == 'Dark' )? this.nextMode = 'Light' : this.nextMode = "Dark";
     }
   }
 }
@@ -122,6 +136,10 @@ body {
   font-family: 'Retro-gaming';
   .app__btn-new-game {
     width: 10rem;
+  }
+  .app__btn-dark {
+    position: absolute;
+    top: 0;
   }
 }
 </style>
