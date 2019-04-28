@@ -1,5 +1,5 @@
 <template>
-  <div v-if="winner == 'monster' || winner == ''" class="monster-container">
+  <div v-if="winner == 'Monster' || winner == ''" class="monster-container">
     <div class="monster-container__life-bar" :style="{width: hpMonster + '%'}">
       <h2 class="monster-container__hp">{{hpMonster}}</h2>
     </div>
