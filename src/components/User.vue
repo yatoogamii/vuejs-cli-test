@@ -23,7 +23,7 @@
 
   .user-container__life-bar {
     position: relative;
-    background-color: green;
+    background-color: #4caf50;
     margin-right: auto;
     height: 3rem;
     .user-container__hp {
