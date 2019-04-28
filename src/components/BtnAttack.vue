@@ -1,10 +1,11 @@
 <template>
-  <button @click="$emit('attack')">Attack</button>
+  <v-btn :large="true"  :disabled="disabled"  color="red" @click="$emit('attack')">Attack</v-btn>
 </template>
 
 <script>
   export default{
-   name: 'BtnAttack' 
+   name: 'BtnAttack',
+   props: ['disabled']
   }
 </script>
 

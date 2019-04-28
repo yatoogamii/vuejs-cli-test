@@ -1,10 +1,10 @@
 <template>
-  <button @click="$emit('reset')">Give Up</button>
+  <v-btn :large="true"  color="brown" @click="$emit('reset')">Give Up</v-btn>
 </template>
 
 <script>
   export default{
-   name: 'BtnReset' 
+   name: 'BtnReset'
   }
 </script>
 

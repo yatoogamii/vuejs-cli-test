@@ -1,10 +1,11 @@
 <template>
-  <button v-on:click="$emit('heal')">Heal</button>
+  <v-btn :large="true"  :disabled="disabled"  color="green" v-on:click="$emit('heal')">Heal</v-btn>
 </template>
 
 <script>
   export default{
-   name: 'Btnheal' 
+   name: 'Btnheal',
+   props: ['disabled']
   }
 </script>
 

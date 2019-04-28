@@ -1,8 +1,8 @@
 <template>
   <section class="container-button">
-    <BtnAttack v-on:attack="$emit('attack')" class="container-button__btn-attack"></BtnAttack>
-    <BtnSpeAttack v-on:spe-attack="$emit('spe-attack')" class="container-button__btn-spe-attack"></BtnSpeAttack>
-    <BtnHeal v-on:heal="$emit('heal')" class="container-button__btn-heal"></BtnHeal>
+    <BtnAttack :disabled="disabled" v-on:attack="$emit('attack')" class="container-button__btn-attack"></BtnAttack>
+    <BtnSpeAttack :disabled="disabled"  v-on:spe-attack="$emit('spe-attack')" class="container-button__btn-spe-attack"></BtnSpeAttack>
+    <BtnHeal :disabled="disabled"  v-on:heal="$emit('heal')" class="container-button__btn-heal"></BtnHeal>
     <BtnReset v-on:reset="$emit('reset')" class="container-button__btn-reset"></BtnReset>
   </section>
 </template>
@@ -21,7 +21,8 @@ import BtnReset from './BtnReset.vue';
       BtnSpeAttack,
       BtnHeal,
       BtnReset
-    }
+    },
+    props: ['disabled']
   }
 </script>
 

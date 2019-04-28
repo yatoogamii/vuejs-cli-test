@@ -2,8 +2,20 @@
   <main id="app">
     <Character :winner="winner.name" v-if="newGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
     </Character>
-    <Skills v-if="newGame" v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
-    <button v-if="!newGame" @click="toggleGame()" class="app__btn-new-game">New game</button>
+    <Skills :disabled="disabled" v-if="newGame" v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
+    <v-btn :large="true" color="blue" v-if="!newGame" @click="toggleGame()" class="app__btn-new-game">New game</v-btn>
+    <v-dialog v-model="dialog" width="300">
+      <v-card hover>
+        <v-card-title primary-title>
+          <p class="headline font-weight-bold">{{ winner.name + " win" }}</p>
+        </v-card-title>
+        <v-card-text >Play again ?</v-card-text>
+        <v-card-actions>
+          <v-btn color="green" @click="reset()">Yes</v-btn>
+          <v-btn color="red" @click="toggleGame()">No</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </main>
 </template>
 
@@ -27,7 +39,9 @@ export default {
       winner: {
         name: '',
         state: false
-      }
+      },
+      disabled: false,
+      dialog: false
     };
   },
   methods: {
@@ -59,17 +73,18 @@ export default {
       }
     },
     checkWinner(character) {
-      this.winner.name = character;
+      this.winner.name = _.capitalize(character);
       this.winner.state = true;
-      if (confirm (`${(character == 'player') ? 'You win' : 'You lose'}, play again ?`) ) {
-        this.reset();
-      }
+      this.disabled = true;
+      this.dialog = true;
     },
     reset() {
       for (let value in this.hp) {
         this.hp[value] = 100;
         this.winner.name = '';
         this.winner.state = false;
+        this.disabled = false;
+        this.dialog = false;
       }
     }
   }
@@ -91,6 +106,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #cfe8ef;
 }
 @font-face {
   font-family: 'Retro-gaming';
