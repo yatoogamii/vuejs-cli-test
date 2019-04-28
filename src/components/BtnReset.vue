@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('reset')">Reset</button>
+  <button @click="$emit('reset')">Give Up</button>
 </template>
 
 <script>

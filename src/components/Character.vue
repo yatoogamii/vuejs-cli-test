@@ -1,7 +1,7 @@
 <template>
-  <div v-if="newGame" class="container-character">
-    <User :hp-player="hpPlayer"></User>
-    <Monster :hp-monster="hpMonster"></Monster>
+  <div class="container-character">
+    <User :winner="winner" :hp-player="hpPlayer"></User>
+    <Monster :winner="winner" :hp-monster="hpMonster"></Monster>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
       Monster,
       User
     },
-    props: ['newGame', 'hpMonster', 'hpPlayer'],
+    props: ['hpMonster', 'hpPlayer', 'winner'],
     methods: {
     }
   }
@@ -27,7 +27,7 @@
 
 .container-character {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;

@@ -1,6 +1,8 @@
 <template>
-  <div class="user-container">
-    <h2>{{hpPlayer}}</h2>
+  <div v-if="winner == 'player' || winner == '' " class="user-container">
+    <div class="user-container__life-bar">
+      <h2>{{hpPlayer}}</h2>
+    </div>
     <img src="./../assets/img/player.gif" alt="player character"/>
   </div>
 </template>
@@ -8,7 +10,7 @@
 <script>
   export default{
     name: 'User',
-    props: ['hpPlayer']
+    props: ['hpPlayer', 'winner']
   }
 </script>
 
@@ -18,6 +20,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  .user-container__life-bar {
+    background-color: green;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 </style>
