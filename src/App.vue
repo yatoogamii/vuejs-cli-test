@@ -1,8 +1,8 @@
 <template>
   <main id="app">
-    <Character :newGame="newGame" :toggleGame="toggleGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
+    <Character :newGame="newGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
     </Character>
-    <Skills v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)"></Skills>
+    <Skills v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
     <button v-if="!newGame" @click="toggleGame()">New game</button>
   </main>
 </template>
