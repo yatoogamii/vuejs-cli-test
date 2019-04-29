@@ -1,17 +1,25 @@
 <template>
-  <div v-if="winner == 'Monster' || winner == ''" class="monster-container">
+  <div class="monster-container">
       <h2 class="user-container__name">Monster</h2>
     <div class="monster-container__life-bar" :style="{width: hpMonster + '%'}">
       <h2 class="monster-container__hp">{{hpMonster}}</h2>
     </div>
-    <img src="./../assets/img/monster-idle.gif" alt="monster character"/>
+    <img v-if="winner == 'Monster' || hpMonster != 0" :src="idle" alt="monster character"/>
+    <img  v-else :src="imgDeath" alt="monster character"/>
   </div>
 </template>
 
 <script>
   export default{
     name: 'Monster',
-    props: ['hpMonster', 'winner']
+    props: ['hpMonster', 'winner', 'death'],
+    data() {
+      return {
+        idle: require('./../assets/img/monster-idle.gif'),
+        imgDeath: require('./../assets/img/monster-death.gif')
+      };
+    }
+    
   }
 </script>
 

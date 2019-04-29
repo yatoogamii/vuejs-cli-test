@@ -1,7 +1,7 @@
 <template>
   <div class="container-character">
-    <User :winner="winner" :hp-player="hpPlayer"></User>
-    <Monster :winner="winner" :hp-monster="hpMonster"></Monster>
+    <User :death="death" :winner="winner" :hp-player="hpPlayer"></User>
+    <Monster :death="death" :winner="winner" :hp-monster="hpMonster"></Monster>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
       Monster,
       User
     },
-    props: ['hpMonster', 'hpPlayer', 'winner'],
+    props: ['hpMonster', 'hpPlayer', 'winner', 'death'],
     methods: {
     }
   }
