@@ -17,6 +17,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <Log :log="log" v-if="newGame"></Log>
   </main>
 </template>
 
@@ -24,11 +25,14 @@
 import _ from 'lodash';
 import Character from './components/Character.vue';
 import Skills from './components/Skills.vue';
+import Log from './components/Log.vue';
+
 export default {
   name: 'app',
   components: {
     Character,
     Skills,
+    Log
   },
   data() {
     return {
@@ -47,7 +51,8 @@ export default {
       darkStyle: '',
       colorTextdarkMode: '',
       nextMode: 'Dark',
-      death: false
+      death: false,
+      log: []
     };
   },
   methods: {
@@ -56,8 +61,11 @@ export default {
       this.reset();
     },
     attack(min, max) {
-      this.hp.monster -= _.random(min, max);
-      this.hp.player -= _.random(5, 12);
+      let dmgPlayer = _.random(min, max);
+      let dmgMonster = _.random(5, 12);
+      this.addLog('attack', dmgPlayer, dmgMonster);
+      this.hp.monster -= dmgMonster; 
+      this.hp.player -= dmgPlayer;
       this.checkHp();
     },
     heal() {
@@ -66,7 +74,9 @@ export default {
       } else {
         this.hp.player += 10;
       }
-      this.hp.player -= _.random(5, 12);
+      let dmgMonster = _.random(5, 12);
+      this.addLog('heal', 10, dmgMonster);
+      this.hp.player -= dmgMonster;
     },
     checkHp() {
       if (this.hp.player <= 0) {
@@ -96,6 +106,7 @@ export default {
         this.disabled = false;
         this.dialog = false;
         this.death = false;
+        this.log = [];
       }
     },
     closeDiag() {
@@ -106,6 +117,13 @@ export default {
       (this.darkStyle == 'background-color: #1d1d1d') ? this.darkStyle = '' : this.darkStyle = 'background-color: #1d1d1d' ;
       (this.colorTextdarkMode == 'color: white') ? this.colorTextdarkMode = '' : this.colorTextdarkMode = 'color: white';
       (this.nextMode == 'Dark' )? this.nextMode = 'Light' : this.nextMode = "Dark";
+    },
+    addLog(state, dmgPlayer, dmgMonster) {
+      if (state == 'heal') {
+        this.log.push(`Player take ${dmgPlayer} heal, Monster do ${dmgMonster} damage`);
+      } else {
+        this.log.push(`Player do ${dmgPlayer} damage, Monster do ${dmgMonster} damage`);
+      }
     }
   }
 }
