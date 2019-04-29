@@ -1,9 +1,10 @@
 <template>
   <div v-if="winner == 'Player' || winner == '' " class="user-container">
+      <h2 class="user-container__name">Player</h2>
     <div class="user-container__life-bar" :style="{ width: hpPlayer + '%' }">
       <h2 class="user-container__hp">{{hpPlayer}}</h2>
     </div>
-    <img src="./../assets/img/player.gif" alt="player character"/>
+    <img src="./../assets/img/player-idle.gif" alt="player character"/>
   </div>
 </template>
 
@@ -31,6 +32,9 @@
       left: 14.4rem;
       top: 0.7rem;
     }
+  }
+  .user-container__name {
+    margin-bottom: 1rem;
   }
 }
 
