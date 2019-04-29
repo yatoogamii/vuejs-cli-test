@@ -17,7 +17,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <Log :log="log" v-if="newGame"></Log>
+    <Log :dark="dark" :log="log" v-if="newGame"></Log>
   </main>
 </template>
 
@@ -64,8 +64,8 @@ export default {
       let dmgPlayer = _.random(min, max);
       let dmgMonster = _.random(5, 12);
       this.addLog('attack', dmgPlayer, dmgMonster);
-      this.hp.monster -= dmgMonster; 
-      this.hp.player -= dmgPlayer;
+      this.hp.monster -= dmgPlayer; 
+      this.hp.player -= dmgMonster;
       this.checkHp();
     },
     heal() {
