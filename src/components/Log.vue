@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="container-log" color="blue">
+    <v-card :dark="dark" class="container-log" color="blue">
       <v-card-title class="text-log-title">Log</v-card-title>
       <v-card-text class="text-log" v-for="text in log">{{text}}</v-card-text>
     </v-card>
@@ -10,7 +10,7 @@
 <script>
   export default{
     name: 'Log',
-    props: ['log']
+    props: ['log', 'dark']
   }
 </script>
 
