@@ -1,7 +1,7 @@
 <template>
   <main id="app" :style="darkStyle">
     <v-btn :dark="!dark" v-if="newGame" class="app__btn-dark" @click="darkmode()">{{nextMode}}</v-btn>
-    <Character :style="colorTextdarkMode" :winner="winner.name" v-if="newGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
+    <Character :death="death" :style="colorTextdarkMode" :winner="winner.name" v-if="newGame" :hpMonster="hp.monster" :hpPlayer="hp.player" >
     </Character>
     <Skills :dark="dark" :disabled="disabled" v-if="newGame" v-on:heal="heal()" v-on:attack="attack(3, 10)" v-on:spe-attack="attack(10, 20)" v-on:reset="toggleGame()"></Skills>
     <v-btn :dark="dark" :large="true" color="blue" v-if="!newGame" @click="toggleGame()" class="app__btn-new-game">New game</v-btn>
@@ -46,7 +46,8 @@ export default {
       dark: false, 
       darkStyle: '',
       colorTextdarkMode: '',
-      nextMode: 'Dark'
+      nextMode: 'Dark',
+      death: false
     };
   },
   methods: {
@@ -70,18 +71,22 @@ export default {
     checkHp() {
       if (this.hp.player <= 0) {
         this.hp.player = 0;
+        this.death = true;
+        this.death = false;
         this.checkWinner("monster");
       }
       if (this.hp.monster <= 0) {
         this.hp.monster = 0;
+        this.death = true;
+        this.death = false;
         this.checkWinner("player");
       }
     },
     checkWinner(character) {
       this.winner.name = _.capitalize(character);
       this.winner.state = true;
-      this.disabled = true;
       this.dialog = true;
+      this.disabled = true;
     },
     reset() {
       for (let value in this.hp) {
@@ -90,6 +95,7 @@ export default {
         this.winner.state = false;
         this.disabled = false;
         this.dialog = false;
+        this.death = false;
       }
     },
     closeDiag() {
