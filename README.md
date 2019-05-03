@@ -3,7 +3,7 @@
 ## Critères qualité
 
 - Vue JS only => Zéro manipulation native DOM !!!
-- Framework CSS : Bulma
+- Framework CSS : Vuetify
 - Les boutons de combat ne sont pas accessibles 
 - Un bouton « New Game » est accessible 
 - New Game donne accès aux boutons de combat 
