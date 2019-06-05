@@ -27,7 +27,7 @@
   overflow-x: hidden;
 }
 .container-log {
-  max-height: 40rem;
+  max-height: 30vh;
   overflow-y: visible;
   overflow-x: hidden;
 }
